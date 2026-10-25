@@ -41,10 +41,16 @@ fig.savefig(OUTPUT / "petrophysics.png", dpi=150)
 print(f"Saved {OUTPUT / 'petrophysics.png'}")
 
 # 4. Pay zones
-# Starting cutoffs - typical values for a conventional sandstone, still to be chosen
+# Cutoffs: typical values for a conventional sandstone.
+# Strict: depths with missing data never count as pay, so they are reported here.
 data["PAY"] = pay_flag(data["VSH"], data["PHI"], data["SW"],
                        vsh_max=0.4, phi_min=0.08, sw_max=0.5)
 summary = net_pay_summary(data["DEPT"], data["PAY"], data["PHI"], data["SW"])
+
+missing = data[data[["VSH", "PHI", "SW"]].isna().any(axis=1)]
+if not missing.empty:
+    print(f"Warning: missing data at {len(missing)} depth(s), not counted as pay: "
+          + ", ".join(f"{d:g} ft" for d in missing["DEPT"]))
 
 print(data.loc[data["PAY"], ["DEPT", "VSH", "PHI", "SW"]].round(2).to_string(index=False))
 print(f"Gross interval : {summary['gross_ft']:.1f} ft")
