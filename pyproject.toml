@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "welllog"
+version = "0.1.0"
+description = "Well log interpretation: reads LAS files and computes petrophysical properties."
+requires-python = ">=3.10"
+dependencies = [
+    "lasio",
+    "numpy",
+    "pandas",
+    "matplotlib",
+]
+
+[tool.setuptools]
+packages = ["welllog"]
