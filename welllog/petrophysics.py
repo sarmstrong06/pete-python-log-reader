@@ -37,3 +37,16 @@ def archie_sw(rt, phi, rw, a=1, m=2, n=2):
     """
     sw = ((a * rw) / (phi**m * rt)) ** (1 / n)
     return np.clip(sw, 0, 1)
+
+
+def pay_flag(vsh, phi, sw, vsh_max, phi_min, sw_max):
+    """Pay flag (True/False): the depth passes all three cutoffs.
+
+    vsh, phi, sw : shale volume, porosity and water saturation (fractions)
+    vsh_max      : rock with more shale than this is too shaly to flow
+    phi_min      : rock with less porosity than this holds too little fluid
+    sw_max       : rock with more water than this would mostly produce water
+
+    Depths with missing data are never flagged as pay.
+    """
+    return (vsh <= vsh_max) & (phi >= phi_min) & (sw <= sw_max)
