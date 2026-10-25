@@ -31,6 +31,14 @@ python main.py
 
 The log plot is saved to `output/raw_logs.png`.
 
+## Tests
+
+```bash
+python -m pytest
+```
+
+The tests check each calculation against a hand-worked answer.
+
 ## Data
 
 `data/sample.las` is a small synthetic well for testing, not real data.

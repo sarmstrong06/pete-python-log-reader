@@ -1,3 +1,4 @@
 lasio
 pandas
 matplotlib
+pytest
