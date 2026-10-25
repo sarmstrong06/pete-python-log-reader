@@ -3,6 +3,7 @@
 import numpy as np
 
 BBL_PER_ACRE_FT = 7758  # barrels in one acre-foot of space
+CUFT_PER_ACRE_FT = 43560  # cubic feet in one acre-foot of space
 
 
 def net_pay_summary(depth, pay, phi, sw):
@@ -50,3 +51,14 @@ def ooip(area_acres, net_pay_ft, phi, sw, bo):
                  oil shrinks as gas comes out of it at the surface
     """
     return BBL_PER_ACRE_FT * area_acres * net_pay_ft * phi * (1 - sw) / bo
+
+
+def ogip(area_acres, net_pay_ft, phi, sw, bg):
+    """Original gas in place (standard cubic feet), volumetric method.
+
+    Same inputs as ooip, except:
+    bg : gas formation volume factor (reservoir cubic feet per standard cubic
+         foot); gas expands hugely at the surface, so bg is small, about
+         0.004-0.01 rcf/scf at typical reservoir pressures
+    """
+    return CUFT_PER_ACRE_FT * area_acres * net_pay_ft * phi * (1 - sw) / bg

@@ -12,8 +12,9 @@ flags pay zones, and estimates oil in place (OOIP).
   (typical values for a conventional sandstone).
 - Missing data is never counted as pay. Affected depths are listed in the output.
 - Average water saturation over the pay is weighted by pore volume.
-- OOIP = 7758 × A × h × φ × (1 − Sw) / Bo. Drainage area (A) and Bo are not in
-  the log, so they are assumed values.
+- OOIP = 7758 × A × h × φ × (1 − Sw) / Bo (stock tank barrels).
+- OGIP = 43,560 × A × h × φ × (1 − Sw) / Bg (standard cubic feet), for gas wells.
+- Drainage area (A), Bo and Bg are not in the log, so they are assumed values.
 
 ## Setup (Ubuntu / WSL)
 
